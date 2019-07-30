@@ -58,12 +58,15 @@ export default {
       this.$http
           .post('listare/get_exercitii',{})
           .then(function(response){
-            //console.log(response)
+            console.log(response)
             this.tableData = response.body.Exercitii
+            //console.log(this.tableData[1].Id)
           })
     },
     deleteRow(index, rows) {
-        rows.splice(index, 1);
+        console.log(index)
+        this.$http.post('listare/sterge_exercitiu',{Id:this.tableData[index].Id})
+                  .then(rows.splice(index, 1))                                                                          
       }
   },
   mounted(){
